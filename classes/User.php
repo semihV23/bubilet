@@ -92,7 +92,7 @@ class User2 {
     private ?string $role;
     private ?string $password;
     private ?string $companyId;
-    private ?float $balance;
+    private ?int $balance;
     private ?DateTimeImmutable $created_at;
 
     public function __construct(
@@ -102,7 +102,7 @@ class User2 {
         ?Role $role,
         ?string $password,
         ?string $companyId,
-        ?float $balance,
+        ?int $balance,
         ?DateTimeImmutable $created_at
     ) {
         $this->id = $id;
@@ -155,11 +155,11 @@ class User2 {
         $this->password = $password;
     }
 
-    public function getBalance(): float {
+    public function getBalance(): int {
         return $this->balance;
     }
 
-    public function setBalance(float $balance): void {
+    public function setBalance(int $balance): void {
         $this->balance = $balance;
     }
 
@@ -223,7 +223,7 @@ class UserRepository {
         $stmt->bindValue(":email", $user->email, SQLITE3_TEXT);
         $stmt->bindValue(":role", $user->role, SQLITE3_TEXT);
         $stmt->bindValue(":password", password_hash($user->password, PASSWORD_DEFAULT), SQLITE3_TEXT);
-        $stmt->bindValue(":balance", $user->balance ?? 0, SQLITE3_FLOAT);
+        $stmt->bindValue(":balance", $user->balance ?? 0, SQLITE3_NUM);
         $result = $stmt->execute();
 
         if ($result === false) {
@@ -271,7 +271,7 @@ class UserRepository {
         $stmt->bindValue(":role", $user->getRole(), SQLITE3_TEXT);
         $stmt->bindValue(":password", $user->getPassword(), SQLITE3_TEXT);
         $stmt->bindValue(":company_id", $user->getCompanyId(), SQLITE3_TEXT);
-        $stmt->bindValue(":balance", $user->getBalance() ?? 0, SQLITE3_FLOAT);
+        $stmt->bindValue(":balance", $user->getBalance() ?? 0, SQLITE3_NUM);
         $stmt->bindValue(":created_at", $user->getCreatedAt()->format('d.m.Y H:i'), SQLITE3_TEXT);
         $result = $stmt->execute();
 
@@ -284,7 +284,7 @@ class UserRepository {
 
     public function updateBalance(string $email, float $balance): bool {
         $stmt = $this->db->prepare("UPDATE User SET balance = :balance WHERE email = :email");
-        $stmt->bindValue(":balance", $balance, SQLITE3_FLOAT);
+        $stmt->bindValue(":balance", $balance, SQLITE3_NUM);
         $stmt->bindValue(":email", $email, SQLITE3_TEXT);
         $result = $stmt->execute();
 

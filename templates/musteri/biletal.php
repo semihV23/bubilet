@@ -2,6 +2,7 @@
 require_once __DIR__ . "/../../classes/Trip.php";
 require_once __DIR__ . "/../../classes/User.php";
 require_once __DIR__ . "/../../classes/Company.php";
+require_once __DIR__ . "/../../classes/Ticket.php";
 require_once __DIR__ . "/../../utils/format.php";
 
 $post_action = $_POST["action"] ?? false;
@@ -10,11 +11,22 @@ $get_action = $_GET["action"] ?? false;
 $tripRepo = new TripRepository();
 $companyRepo = new CompanyRepository();
 $userRepo = new UserRepository();
+$ticketRepo = new TicketRepository();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["action"])) {
     switch ($_POST["action"]) {
         case "bilet-satin-al":
+            if(
+                empty($_POST["sefer-id"]) ||
+                empty($_POST["koltuk-no"])
+            ){
+                echo "Tüm alanlar doldurulmalıdır.";
+                exit;
+            }
             
+            $trip = $tripRepo->findById($_POST["sefer-id"]);
+            $ticket = new Ticket(tripId:$_POST["sefer-id"], userId:$_SESSION["user_id"], totalPrice:$trip->getPrice(), seatNumber:$_POST["koltuk-no"]);
+            $result = $ticketRepo->create($ticket);
     }
 }
 
@@ -27,6 +39,12 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["action"])) {
             }
     }
 }
+
+?>
+
+<?php
+
+require_once __DIR__ . "/../../snippets/header.php";
 
 ?>
 
@@ -70,17 +88,17 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["action"])) {
                 <input type="number" name="capacity" min="1" max="100" value="<?= $sefer->getCapacity() ?>" disabled>
 
                 <h2>Koltuk Seçimi</h2>
-                <?php print_r($tripRepo->getBookedSeats($sefer->getId())) ?>
-
-                <input type="hidden" name="action" value="bilet-satin-al">
+                <?php $bookedSeats = $tripRepo->getBookedSeats($sefer->getId()) ?>
                 <form action="" method="post">
                     <div class="form-wrapper">
                         <label>Koltuk Numarası</label>
                         <select name="koltuk-no">
                             <?php for ($i = 1; $i < $sefer->getCapacity() + 1; $i++): ?>
-                                <option value="<?= $i ?>"><?= $i ?></option>
+                                <option value="<?= $i ?>" <?php if(in_array($i, $bookedSeats)){echo "disabled";} ?> ><?= $i ?></option>
                             <?php endfor; ?>
                         </select>
+                        <input type="hidden" name="action" value="bilet-satin-al">
+                        <input type="hidden" name="sefer-id" value="<?= $_GET["id"] ?>">
                         <input type="submit" value="Satın Al">
                     </div>
                 </form>

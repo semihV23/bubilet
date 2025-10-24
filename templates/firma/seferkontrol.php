@@ -22,7 +22,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["action"])) {
                 empty($_POST["price"]) ||
                 empty($_POST["capacity"])
             ) {
-                print_r($_POST);
                 echo "Tüm alanlar doldurulmalıdır.";
                 exit;
             }
