@@ -1,0 +1,27 @@
+.form-wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    max-width: 400px;
+}
+
+.table-wrapper table{
+    border: 1px solid;
+    border-collapse: collapse;
+}
+
+.table-wrapper th{
+    border: 1px solid;
+    padding: 8px;
+    background-color: #f2f2f2;
+}
+
+.table-wrapper td {
+    padding: 8px;
+    border: solid;
+    border-width: 1px 0 1px 0;
+}
+
+input, select {
+    height: 30px;
+}
