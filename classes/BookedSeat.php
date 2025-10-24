@@ -129,16 +129,11 @@ class BookedSeatRepository
         $stmt->bindValue(':ticket_id', $ticketId, SQLITE3_TEXT);
         $result = $stmt->execute();
         
-        // $seats = [];
-        // while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
-        //     $seats[] = $this->hydrateBookedSeat($row);
-        // }
-        // return $seats;
-
-        echo "koltuk";
-        print_r($result->fetchArray(SQLITE3_ASSOC)["seat_number"]);
-
-        return $result->fetchArray(SQLITE3_ASSOC)["seat_number"];
+        $seats = [];
+        while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+            $seats[] = $this->hydrateBookedSeat($row);
+        }
+        return $seats[0]->getSeatNumber();
     }
 
     public function update(BookedSeat $seat): bool
