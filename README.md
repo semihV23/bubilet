@@ -27,18 +27,18 @@ Tüm isterler henüz yerine getirilmemiştir. Dolayısıyla proje henüz tamamla
 
 # Yapılacaklar
 ### Backend
-- [+] Proje dizin yapısı belirlenecek.
-- [+] Veritabanı tablolarını oluşturan init dosyası eklenecek.
-- [+] Kayıt olma ve oturum açma sayfaları eklenecek. Oturum yönetimi yapılacak.
-- [+] Admin paneli eklenecek. Kullanıcı ve firma CRUD özellikleri eklenecek.
-- [+] Firma paneli eklenecek. Firma yetkilisi atama özelliği eklenecek. Sefer CRUD özellikleri eklenecek.
-- [+] Bilet satın alma sayfası eklenecek.
-- [+] Satın alınan biletler Hesabım sayfasında listelenecek.
-- [-] Şehre göre bilet arama sistemi eklenecek.
-- [-] Kupon yönetimi ve kupon kullanımı sistemi eklenecek.
-- [-] PDF bilet indirme özelliği eklenecek.
-- [-] Bilet iptal özelliği eklenecek.
+- [x] Proje dizin yapısı belirlenecek.
+- [x] Veritabanı tablolarını oluşturan init dosyası eklenecek.
+- [x] Kayıt olma ve oturum açma sayfaları eklenecek. Oturum yönetimi yapılacak.
+- [x] Admin paneli eklenecek. Kullanıcı ve firma CRUD özellikleri eklenecek.
+- [x] Firma paneli eklenecek. Firma yetkilisi atama özelliği eklenecek. Sefer CRUD özellikleri eklenecek.
+- [x] Bilet satın alma sayfası eklenecek.
+- [x] Satın alınan biletler Hesabım sayfasında listelenecek.
+- [ ] Şehre göre bilet arama sistemi eklenecek.
+- [ ] Kupon yönetimi ve kupon kullanımı sistemi eklenecek.
+- [ ] PDF bilet indirme özelliği eklenecek.
+- [ ] Bilet iptal özelliği eklenecek.
 
 ### Frontend
-- [-] XSS zafiyetleri giderilecek.
-- [-] Renkler, fontlar ve ikonlar eklenecek.
+- [ ] XSS zafiyetleri giderilecek.
+- [ ] Renkler, fontlar ve ikonlar eklenecek.
