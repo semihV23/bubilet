@@ -20,7 +20,7 @@ $ docker-compose up --build
 
 Proje varsayılan olarak http://localhost/ adresinde yayınlanmaktadır.
 
-Veritabanı tablolarını oluşturmak için http://localhost/setup/init/ adresi ziyaret edilmelidir.
+Veritabanı tablolarını oluşturmak için http://localhost/setup/init adresi ziyaret edilmelidir.
 
 # Önemli Açıklama
 Tüm isterler henüz yerine getirilmemiştir. Dolayısıyla proje henüz tamamlanmamıştır. Bir ana sayfa olmadığı gibi site içerisinde rahat gezinmek için menü de bulunmamaktadır. Geliştirme aşamasında sayfaların adreslerini öğrenmek için `index.php` sayfasını ziyaret edebilirsiniz. Orada ana yönlendiricide tanımlı olan sayfalar aktiftir.
